@@ -1,0 +1,18 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{returnTemp.value}}°F"
+      }
+    ]
+  },
+  "detailView": [
+    {
+      "label": "Return Temperature",
+      "displayType": "state",
+      "state": {
+        "label": "{{returnTemp.value}}°F"
+      }
+    }
+  ]
+}

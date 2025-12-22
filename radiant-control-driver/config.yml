@@ -1,0 +1,4 @@
+name: Radiant Control
+packageKey: radiant-control-v1
+permissions:
+  zigbee: {}

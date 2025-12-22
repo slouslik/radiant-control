@@ -1,0 +1,48 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{mixSetpoint.value}}°F"
+      }
+    ],
+    "actions": []
+  },
+  "detailView": [
+    {
+      "label": "Mixing Valve Setpoint",
+      "displayType": "stepper",
+      "stepper": {
+       "command": {
+	   "name": "setMixSetpoint"
+	},
+        "value": "mixSetpoint.value",
+        "unit": "mixSetpoint.unit",
+        "range": [40, 150],
+        "step": 1
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "Mix Setpoint",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "mixSetpoint.value",
+          "unit": "mixSetpoint.unit",
+          "range": [40, 150]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "Set Mix Setpoint",
+        "displayType": "numberField",
+        "numberField": {
+          "command": "setMixSetpoint",
+          "range": [40, 150]
+        }
+      }
+    ]
+  }
+}

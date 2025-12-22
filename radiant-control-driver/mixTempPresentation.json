@@ -1,0 +1,18 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{mixTemp.value}}°F"
+      }
+    ]
+  },
+  "detailView": [
+    {
+      "label": "Mix Temperature",
+      "displayType": "state",
+      "state": {
+        "label": "{{mixTemp.value}}°F"
+      }
+    }
+  ]
+}

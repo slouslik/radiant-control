@@ -1,0 +1,21 @@
+name: radiant-control.v1
+components:
+  - id: main
+    capabilities:
+      - id: cablecenter03358.mixTemperature         # Status display
+        version: 1
+      - id: cablecenter03358.returnTemperature      # Status display
+        version: 1
+      - id: cablecenter03358.mixingValvePosition    # Status display
+        version: 1
+      - id: cablecenter03358.mixingValveSetpoint    # Interactive Slider
+        version: 1
+      - id: refresh                                 # Manual update button
+        version: 1
+    categories:
+      - name: Thermostat
+metadata:
+  # Once you run the 'presentation:device-config:create' command, 
+  # replace these placeholders with the output values.
+  vid: "75cd025d-52d3-3c0d-a473-47e37a03f17e"
+  mnmn: "SmartThingsCommunity"

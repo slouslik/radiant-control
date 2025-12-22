@@ -1,0 +1,82 @@
+ smartthings capabilities
+ smartthings capabilities:create --help
+ smartthings capabilities:create -i floorTemp.json
+ smartthings capabilities:create -i mixSetpoint.json
+ smartthings capabilities:create -i mixTemp.json
+ smartthings capabilities:create -i mixValvePosition.json
+ smartthings capabilities:create -i returnTemp.json
+ smartthings capabilities:create -u mixValvePosition.json
+ smartthings capabilities:delete
+ smartthings capabilities:delete 3
+ smartthings capabilities:presentation
+ smartthings capabilities:presentation:create --help
+ smartthings capabilities:presentation:create cablecenter03358.floorTemperature 1 -i floorTempPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.mixingValvePosition 1 -i mixValvePosPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.mixingValveSetpoint  1 -i mixSetpointPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.mixingValveSetpoint 1 -i mixSetpointPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.mixingValveTemperature 1 -i mixTempPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.mixTemperature 1 -i mixTempPresentation.json
+ smartthings capabilities:presentation:create cablecenter03358.returnTemperature 1 -i returnTempPresentation.json
+ smartthings capabilities:presentation:delete
+ smartthings capabilities:presentation:delete 
+ smartthings capabilities:presentation:update --help
+ smartthings capabilities:presentation:update cablecenter03358.floorTemperature 1 -i floorTempPresentation.json
+ smartthings capabilities:presentation:update cablecenter03358.mixingValvePosition 1 -i mixValvePosPresentation.json
+ smartthings capabilities:presentation:update cablecenter03358.mixingValveSetpoint  1 -i mixSetpointPresentation.json
+ smartthings capabilities:presentation:update cablecenter03358.mixingValveSetpoint -i mixSetpointPresentation.json
+ smartthings capabilities:presentation:update cablecenter03358.mixingValveTemperature 1 -i mixTempPresentation.json
+ smartthings capabilities:remove
+ smartthings capabilities:show
+ smartthings capabilities:update
+ smartthings capabilities:update --help
+ smartthings capabilities:update -i mixValvePosition.json
+ smartthings device-profiles
+ smartthings deviceconfig
+ smartthings deviceprofiles
+ smartthings deviceprofiles:create --input=radiant-control.v1.yml
+ smartthings deviceprofiles:delete
+ smartthings devices
+ smartthings devices 16
+ smartthings devices 5
+ smartthings devices 5 -j
+ smartthings devices eaf63a29-709a-49aa-8a97-8175c901e6da -j
+ smartthings devices:delete eaf63a29-709a-49aa-8a97-8175c901e6da
+ smartthings edge --help
+ smartthings edge:channels
+ smartthings edge:channels:assign
+ smartthings edge:channels:create
+ smartthings edge:channels:delete
+ smartthings edge:channels:enroll
+ smartthings edge:devices
+ smartthings edge:drivers
+ smartthings edge:drivers --help
+ smartthings edge:drivers:assign
+ smartthings edge:drivers:delete
+ smartthings edge:drivers:devices
+ smartthings edge:drivers:install
+ smartthings edge:drivers:installed
+ smartthings edge:drivers:logcat
+ smartthings edge:drivers:logcat 
+ smartthings edge:drivers:logcat --help
+ smartthings edge:drivers:logcat 14
+ smartthings edge:drivers:logcat 7
+ smartthings edge:drivers:package
+ smartthings edge:drivers:show
+ smartthings edge:drivers:switch
+ smartthings edge:logcat
+ smartthings presentation
+ smartthings presentation:device-config
+ smartthings presentation:device-config --help
+ smartthings presentation:device-config 1
+ smartthings presentation:device-config 2bffdce2-d4a2-374f-ade6-b26c8f0ace4b
+ smartthings presentation:device-config 75cd025d-52d3-3c0d-a473-47e37a03f17e
+ smartthings presentation:device-config SmartThingsCommunity
+ smartthings presentation:device-config:create --input=radiant_config.json
+ smartthings presentation:device-config:generate --help
+ smartthings presentation:device-config:generate radiant-control-v1 --output=config.json
+ smartthings presentation:device-config:generate radiant-control.v1 --output=radiant_config.json
+ smartthings presentation:device-config:update --input=radiant_config.json
+ smartthings presentation:deviceconfig
+ smartthings presentation:deviceconfig:generate 7903d762-c150-4d2a-8d9d-42fb06febd8e --output=radiant_config.json
+ smartthings presentation:deviceconfig:generate radiant-control.v1 --output=radiant_config.json
+ smartthings edge:drivers:logcat 7

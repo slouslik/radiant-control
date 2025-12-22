@@ -1,0 +1,18 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "Valve: {{mixValvePosition.value}}%"
+      }
+    ]
+  },
+  "detailView": [
+    {
+      "label": "Mixing Valve Position",
+      "displayType": "state",
+      "state": {
+        "label": "{{mixValvePosition.value}}%"
+      }
+    }
+  ]
+}

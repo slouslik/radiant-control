@@ -1,0 +1,6 @@
+zigbeeManufacturer:
+  - id: "PhysicalGraph/PG312"
+    deviceLabel: "Radiant Control"
+    manufacturer: "PhysicalGraph"
+    model: "PG312"
+    deviceProfileName: radiant-control.v1
