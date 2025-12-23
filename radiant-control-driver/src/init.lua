@@ -33,17 +33,12 @@ local function parse_and_emit(device, text)
     log.info("Temp: " .. value)
   elseif name == "mixTemp" then
     device:emit_event(capabilities[CAP_MIX_TEMP].mixTemp({value = value, unit = "F"}))
-  elseif name == "floorTemp" then
-    log.info("Floor Temp: " .. value)
   elseif name == "mixValvePosition" then
     device:emit_event(capabilities[CAP_MIX_POS].mixValvePosition({value = value}))
   elseif name == "mixSetpoint" then
     device:emit_event(capabilities[CAP_MIX_SETPOINT].mixSetpoint({value = value}))
   elseif name == "returnTemp" then
-    if value < 0 then value = 0 end
     device:emit_event(capabilities[CAP_RETURN_TEMP].returnTemp({value = value, unit = "F"}))
-  elseif name == "isPumpRunning" then
-    log.info("Pump running: " .. value)
   elseif name == "ping" then
     log.info("Ping received")
   end

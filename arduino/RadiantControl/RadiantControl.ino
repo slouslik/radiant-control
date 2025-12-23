@@ -15,13 +15,6 @@
 // Mixing Valve pins
 int mixValvePower = 7;  // the pin to turn on the mixing valve
 int mixValve = 13;      // the pin for the mixing valve adjustment
-int pumpPower = 11;     // pin to turn on circuit pump
-int pumpRunningPin = 9;  // pump can be stopped because of DHW priority
-
-//TMP36 Pin Variables
-int tempPin = 1;        // the analog pin the TMP36's Vout (sense) pin is connected to
-                        // the resolution is 10 mV / degree centigrade with a
-                        // 500 mV offset to allow for negative temperatures
 
 // Setup a oneWire instance to communicate with any OneWire devices
 OneWire oneWire(ONE_WIRE_BUS);
@@ -39,16 +32,10 @@ SimpleTimer timer;
 
 byte mixSetpoint = 120;
 int mixSTaddr = 0;
-int temperature = 0;
 int returnTemp = 0;
 int mixTemp = 0;
 int mixValvePosition = MV_50PERCENT;
-bool isPumpRunning = false;
 bool dirty = false;
-// unsigned long previousTime = 0;
-// unsigned long deltaTime = 0;
-// unsigned long interval = 5000;
-
 
 bool isDebugEnabled;    // enable or disable debug in this example
 int stateNetwork;       // state of the network
@@ -124,43 +111,6 @@ void updateTemps()
     Serial.print(returnTemp);
     Serial.print("\n\r");
   }
-
-  temp = getTmp36Temperature();
-  if (temp != temperature) {
-    dirty = true;
-    temperature = temp;
-    Serial.print("Temperature = ");
-    Serial.print(temperature);
-    Serial.print("\n\r");
-  }
-
-  bool running = digitalRead(pumpRunningPin) == LOW ? false : true;
-  if (running != isPumpRunning) {
-    dirty = true;
-    isPumpRunning = running;
-  }
-}
-
-int getTmp36Temperature() {
-  int tempReading = analogRead(tempPin);
-//  Serial.print("Temp reading = ");
-//  Serial.print(tempReading);     // the raw analog reading
-
-  // converting that reading to voltage, which is based off the reference voltage
-  float voltage = tempReading * aref_voltage;
-  voltage /= 1024.0;
-
-  // print out the voltage
-//  Serial.print(" - ");
-//  Serial.print(voltage); Serial.println(" volts");
-
-  // now print out the temperature
-  float temperatureC = (voltage - 0.5) * 100 ;  //converting from 10 mv per degree wit 500 mV offset
-                                               //to degrees ((volatge - 500mV) times 100
-  // now convert to Fahrenheight
-  int temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
-
-  return temperatureF;
 }
 
 void updateSmartthings()
@@ -169,8 +119,6 @@ void updateSmartthings()
     return;
 
   if (dirty) {
-    smartthing.send("temperature " + String(temperature));
-    delay(250);
     smartthing.send("mixTemp " + String(mixTemp));
     delay(250);
     smartthing.send("returnTemp " + String(returnTemp));
@@ -180,8 +128,6 @@ void updateSmartthings()
 
     float tmp = ((float)mixValvePosition/(float)MV_100PERCENT) * 100.0 + 0.5;
     smartthing.send("mixValvePosition " + String((int) tmp));
-    delay(250);
-    smartthing.send("isPumpRunning " + String(isPumpRunning));
     delay(250);
     dirty = false;
   }
@@ -243,9 +189,6 @@ void setup(void)
   pinMode(mixValve, OUTPUT);
   analogWrite(mixValve, MV_50PERCENT);
   digitalWrite(mixValvePower, LOW);
-  digitalWrite(pumpPower, LOW);
-  pinMode(tempPin, INPUT);
-  pinMode(pumpRunningPin, INPUT);
 
   // If you want to set the aref to something other than 5v
   analogReference(EXTERNAL);
@@ -263,17 +206,10 @@ void loop(void)
 
 void adjustMixValve()
 {
-  if (digitalRead(pumpRunningPin) == LOW) {
-    isPumpRunning = false;
-    Serial.println("Pump is stopped -- don't adjust mixing valve");
-    return;
-  }
-
-  isPumpRunning = true;
   Serial.println("Pump is running - adjust mixing valve");
 
   if (mixTemp < mixSetpoint) {
-      increaseMixingValvePosition();
+    increaseMixingValvePosition();
   }
   else if (mixTemp > mixSetpoint) {
     // lower mixing valve adjustment
